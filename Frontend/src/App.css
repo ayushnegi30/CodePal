@@ -1,0 +1,86 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 2.8rem;
+  display: flex;
+  gap: 1rem;
+}
+main .left,
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
+}
+
+main .left {
+  background-color: #000000;
+  position: relative;
+}
+
+main .left{
+  background-color: black;
+}
+
+.left .code,
+.code pre,
+.code pre code{
+  height:100%;
+  width:100%;
+  margin:0;
+  border-radius: 0.7 rem;
+  background-color:black;
+}
+
+main .left .review {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(219, 219, 255);
+  color: #000000;
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.7rem;
+}
+
+
+main .right {
+  background-color: #343434;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  overflow: auto;
+}
+
+.header-container {
+  position: absolute;
+  top: 2%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.app-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(72, 92, 139);
+  
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
