@@ -1,7 +1,8 @@
-const express= require('express');
-const aiController= require("../controllers/ai.controller")
-const router=express.Router();
+const express = require("express");
+const aiController = require("../controllers/ai.controller");
 
-router.post("/get-review",aiController.getReview )
+const router = express.Router();
 
-module.exports=router;
+router.post("/get-review", aiController.getReview);
+
+module.exports = router;

@@ -1,29 +1,22 @@
-
-// const express = require('express');
-// const aiRoutes= require("./routes/ai.routes") 
-// const app = express();
-// app.use(express.json())
-// app.get('/', (req, res) => {
-//     res.send("works");
-// });// route for get req
-// app.use('/ai', aiRoutes)
-// module.exports = app; //the moment we call the express a server is 'created' but does not starts
-
 const express = require('express');
-const aiRoutes = require('./routes/ai.routes')
-const cors = require('cors')
+const aiRoutes = require('./routes/ai.routes');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-app.use(cors())
-
-
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
-})
+  res.send('Hello World');
+});
 
-app.use('/ai', aiRoutes)
+/* 🔥 TEST ROUTE — VERY IMPORTANT */
+app.get('/test-ai', async (req, res) => {
+  const result = await generateContent("Say hello in one line");
+  res.send(result);
+});
 
-module.exports = app
+app.use('/ai', aiRoutes);
+
+module.exports = app;
