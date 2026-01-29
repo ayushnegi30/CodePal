@@ -1,29 +1,27 @@
-const express = require("express");
-const cors = require("cors");
-
-const aiRoutes = require("./routes/ai.routes");
+const express = require('express');
+const cors = require('cors');
+const aiRoutes = require('./routes/ai.routes');
 
 const app = express();
 
-/* 🔥 TRUST RENDER PROXY */
-app.set("trust proxy", 1);
-
-/* 🔥 HARD RESET CORS (ALLOW ALL FOR NOW) */
+/* ✅ CORRECT CORS CONFIG */
 app.use(cors({
-  origin: "*",
+  origin: [
+    "http://localhost:5173",
+    "https://code-pal-seven.vercel.app"
+  ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-/* 🔥 FORCE PREFLIGHT RESPONSE */
-app.options("*", cors());
-
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.status(200).send("Backend alive ✅");
+/* ✅ HEALTH CHECK */
+app.get('/', (req, res) => {
+  res.send('Backend alive ✅');
 });
 
-app.use("/ai", aiRoutes);
+/* ✅ AI ROUTES */
+app.use('/ai', aiRoutes);
 
 module.exports = app;
