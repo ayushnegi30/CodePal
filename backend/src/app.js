@@ -1,22 +1,29 @@
-const express = require('express');
-const aiRoutes = require('./routes/ai.routes');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+
+const aiRoutes = require("./routes/ai.routes");
 
 const app = express();
 
-app.use(cors());
+/* 🔥 TRUST RENDER PROXY */
+app.set("trust proxy", 1);
+
+/* 🔥 HARD RESET CORS (ALLOW ALL FOR NOW) */
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+/* 🔥 FORCE PREFLIGHT RESPONSE */
+app.options("*", cors());
+
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get("/", (req, res) => {
+  res.status(200).send("Backend alive ✅");
 });
 
-/* 🔥 TEST ROUTE — VERY IMPORTANT */
-app.get('/test-ai', async (req, res) => {
-  const result = await generateContent("Say hello in one line");
-  res.send(result);
-});
-
-app.use('/ai', aiRoutes);
+app.use("/ai", aiRoutes);
 
 module.exports = app;
